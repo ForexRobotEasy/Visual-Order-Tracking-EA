@@ -1,0 +1,87 @@
+
+//+------------------------------------------------------------------+
+//|                                      Visual Order Tracking EA                                      |
+//|                                   Developer: Forex Robot Easy Team                                   |
+//|                                 Developer's site: forexroboteasy.com                                |
+//+------------------------------------------------------------------+
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                             Function Declarations                             |
+//|                                                                  |
+//+------------------------------------------------------------------+
+int OnInit();
+void OnDeinit(const int reason);
+void OnTick();
+void OnChartEvent(const int id,const long& lparam,const double& dparam,const string& sparam);
+string FormatTradeResult(double pips, double profit, double profit_percentage, double percentage_change);
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                             Global Variables                             |
+//|                                                                  |
+//+------------------------------------------------------------------+
+color profitableBuyColor = Lime; // Color for profitable buy positions
+color losingBuyColor = Red; // Color for losing buy positions
+color profitableSellColor = DodgerBlue; // Color for profitable sell positions
+color losingSellColor = DarkOrange; // Color for losing sell positions
+color lineColor = Gray; // Color for lines
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                             OnInit Function                             |
+//|                                                                  |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    // Initialize the VOT EA and setup chart settings
+    ChartSetInteger(0, CHART_SHOW_TRADE_LEVELS, true);
+    ChartSetInteger(0, CHART_SHOW_OBJECT_DESCR, true);
+
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                             OnDeinit Function                             |
+//|                                                                  |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+    // Deinitialize the VOT EA and clean up any resources
+    ChartSetInteger(0, CHART_SHOW_TRADE_LEVELS, false);
+    ChartSetInteger(0, CHART_SHOW_OBJECT_DESCR, false);
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                             OnTick Function                             |
+//|                                                                  |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+    // Update the VOT EA on each tick
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                             OnChartEvent Function                             |
+//|                                                                  |
+//+------------------------------------------------------------------+
+void OnChartEvent(const int id, const long& lparam, const double& dparam, const string& sparam)
+{
+    // Handle chart events
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//|                             FormatTradeResult Function                             |
+//|                                                                  |
+//+------------------------------------------------------------------+
+string FormatTradeResult(double pips, double profit, double profit_percentage, double percentage_change)
+{
+    // Format the trade result with the specified values
+    string tradeResult = 'Pips: ' + DoubleToStr(pips, 2) + ' | Profit: ' + DoubleToStr(profit, 2) + ' | Profit %: ' + DoubleToStr(profit_percentage, 2) + ' | % Change: ' + DoubleToStr(percentage_change, 2);
+    
+    return tradeResult;
+}
